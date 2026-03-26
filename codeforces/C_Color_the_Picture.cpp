@@ -1,0 +1,106 @@
+/*
+        অন্তর মম বিকশিত করো অন্তরতর হে–
+        নির্মল করো, উজ্জ্বল করো, সুন্দর করো হে ॥
+        জাগ্রত করো, উদ্যত করো, নির্ভয় করো হে।
+        মঙ্গল করো, নিরলস নিঃসংশয় করো হে ॥
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long int
+#define double long double
+#define pii pair<int, int>
+#define vi vector<int>
+#define vpi vector<pii>
+#define si set<int>
+#define spi set<pii>
+#define msi multiset<int>
+#define mi map<int, int>
+#define mmi multimap<int, int>
+
+#define gap ' '
+#define endl '\n'
+#define pb push_back
+#define mp make_pair
+#define print(str) cout << str << endl
+#define printp(p) cout << '(' << p.F << ',' << gap << p.S << ')' << endl;
+#define printx(array) { for (auto x : array) cout << x << gap; cout << endl; }
+#define scanx(array) { for (auto &x: array) cin >> x; }
+#define printxp(array) { for (auto x : array) cout << '(' << x.F << ',' << gap << x.S << ')' << gap; cout << endl; }
+#define loop(i, n) for (int i=0; i<n; i++)
+#define loop_v for (auto it=v.begin(); it!=v.end(); it++)
+#define loop_s for (auto it=s.begin(); it!=s.end(); it++)
+#define all(v) v.begin(), v.end()
+#define itf(it) (*it).F
+#define its(it) (*it).S
+#define F first
+#define S second
+
+// for debugging
+#define bug(...) __f(#__VA_ARGS__, __VA_ARGS__)
+template <typename Arg1>
+void __f(const char* name, Arg1&& arg1) { cout << name << " : " << arg1 << endl; }
+template <typename Arg1, typename... Args>
+void __f(const char* names, Arg1&& arg1, Args&&... args)
+{
+    const char* comma = strchr(names+1, ',');
+    cout.write (names, comma-names) << " : " << arg1 << " | "; __f (comma+1, args...);
+}
+
+int32_t main()
+{
+    int test_cases = 1;
+    cin >> test_cases;
+    for (int cases=1; cases<=test_cases; cases++)
+    {
+        // SOLVE STARTS HERE
+
+        int n, m, k, q, in, out=0, sum=0, sum2=0, flag=0;
+        cin >> n >> m >> k;
+        // if (n>m) swap(n, m);
+        vi v(k);
+        scanx(v);
+        sort(all(v), greater<int>());
+
+        int x=2;
+        while (x--)
+        {
+            sum = 0;
+            if (n%2 == 0){
+                loop(i, k){
+                    if (v[i]/m >= 2) sum += v[i]/m;
+                    if (sum >= n){
+                        print("Yes");
+                        goto case_end;
+                    }
+                }
+            }
+            else{
+                int possible2=0, i=0, target;
+                for (; i<k; i++){
+                    if (v[i]/m >= 2){
+                        sum += v[i]/m;
+                        if (v[i]/m > 2) flag=1;
+                    }
+                    else break;
+                }
+                if (sum >= n && flag){
+                    print("Yes");
+                    goto case_end;
+                }
+            }
+            swap(n,m);
+        }
+        
+        print("No");
+case_end:;
+    }
+    return 0;
+}
+
+/*
+        Fihad arRahman
+        hellofihad@gmail.com
+        24-07-2022 21:33
+*/
